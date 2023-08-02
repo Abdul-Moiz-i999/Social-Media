@@ -1,0 +1,4 @@
+.homeContainer {
+  display: flex;
+  width: 100%; /* do check if this is req or not */
+}

@@ -1,0 +1,74 @@
+.post {
+  border-radius: 10px;
+  margin: 30px 0;
+  width: 100%;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.post .postWrapper {
+  padding: 10px;
+}
+
+.post .postWrapper .postTop {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.postWrapper .postTop .postTopLeft {
+  align-items: center;
+  display: flex;
+}
+
+.postTop .postTopLeft .postProfileImg {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+}
+
+.postTop .postTopLeft .postUsername {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.postTop .postTopLeft .postDate {
+  font-size: 12px;
+}
+.post .postWrapper .postCenter {
+  margin: 20px 0;
+}
+
+.postWrapper .postCenter .postImg {
+  margin-top: 20px;
+  max-height: 500px;
+  width: 100%;
+}
+
+.post .postWrapper .postBottom {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.postWrapper .postBottom .postBottomLeft {
+  align-items: center;
+  display: flex;
+}
+
+.postBottom .postBottomLeft .postLikeIcon {
+  cursor: pointer;
+  height: 24px;
+  margin-right: 5px;
+  width: 24px;
+}
+
+.postBottom .postBottomLeft .postLikeIcon {
+  font-size: 15px;
+}
+.postBottom .postBottomRight .postCommentCounter {
+  border-bottom: 1px dashed gray;
+  cursor: pointer;
+  font-size: 15px;
+}
