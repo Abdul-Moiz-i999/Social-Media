@@ -21,6 +21,21 @@
   justify-content: center;
 }
 
+.registerRight .registerError {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+.registerRight .registerSuccess {
+  color: green;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
 .registerWrapper .registerLeft .registerLogo {
   color: #1775ee;
   font-size: 50px;

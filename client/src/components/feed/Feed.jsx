@@ -11,22 +11,28 @@ function Feed({ username }) {
 
   useEffect(() => {
     const getData = async () => {
-      const fetched = username
-        ? await axios.get("/posts/profile/" + username)
-        : await axios.get("/posts/timeline/" + user._id);
-      setPosts(
-        fetched.data.sort(
-          (p1, p2) => new Date(p2.createdAt) - new Date(p1.createdAt)
-        )
-      );
+      try {
+        const fetched = username
+          ? await axios.get("/posts/profile/" + username)
+          : await axios.get("/posts/timeline/" + user._id);
+        console.log(fetched.data);
+        setPosts(
+          fetched.data?.sort(
+            (p1, p2) => new Date(p2.createdAt) - new Date(p1?.createdAt)
+          )
+        );
+      } catch (err) {
+        console.log("err");
+      }
     };
     getData();
   }, [username, user._id]);
+
   return (
     <div className="feed">
       <div className="feedWrapper">
         {(!username || username === user.username) && <Share />}
-        {posts.map((p, index) => (
+        {posts?.map((p, index) => (
           <Post key={index} post={p} />
         ))}
       </div>

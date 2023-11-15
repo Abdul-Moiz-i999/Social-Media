@@ -27,7 +27,8 @@ function Rightbar({ user }) {
         console.log(err);
       }
     };
-    getFriends();
+
+    user && getFriends();
   }, [user]);
 
   const HomeRightbar = () => {

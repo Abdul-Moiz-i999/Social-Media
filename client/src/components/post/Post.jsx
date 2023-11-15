@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Post({ post }) {
-  const [like, setLike] = useState(post.likes.length);
+  const [like, setLike] = useState(post?.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
 
@@ -15,20 +15,21 @@ function Post({ post }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id));
-  }, [currentUser._id, post.likes]);
+    setIsLiked(post?.likes.includes(currentUser._id));
+  }, [currentUser._id, post?.likes]);
 
   useEffect(() => {
     const getData = async () => {
       const fetched = await axios.get(`/users/?userId=${post.userId}`);
       setUser(fetched.data);
     };
-    getData();
-  }, [post.userId]);
+
+    post && getData();
+  }, [post?.userId]);
 
   const handleLike = async () => {
     try {
-      await axios.put("/posts/" + post._id + "/like", {
+      await axios.put("/posts/" + post?._id + "/like", {
         userId: currentUser._id,
       });
     } catch (err) {
@@ -55,7 +56,7 @@ function Post({ post }) {
               />
             </Link>
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{format(post.createdAt)}</span>
+            <span className="postDate">{format(post?.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVertIcon />
@@ -64,7 +65,9 @@ function Post({ post }) {
 
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img src={PF + post.img} alt="User Post" className="postImg" />
+          {post?.img && (
+            <img src={PF + post?.img} alt="User Post" className="postImg" />
+          )}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
@@ -83,7 +86,7 @@ function Post({ post }) {
             <span className="postLikeCounter">{like} People Liked This!</span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentCounter">{post.comment} comments</span>
+            <span className="postCommentCounter">{post?.comment} comments</span>
           </div>
         </div>
       </div>

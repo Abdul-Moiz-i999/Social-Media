@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+
 import "./register.css";
 
 function Register() {
@@ -9,6 +10,9 @@ function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const navigate = useNavigate();
+
+  const [error, setError] = useState();
+  const [done, setDone] = useState(false);
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -22,12 +26,17 @@ function Register() {
       };
       try {
         await axios.post("auth/register", user);
-        navigate("/login");
+        // navigate("/login", { state: { key: "valueas" } });
+        setDone(true);
+        setError();
       } catch (err) {
+        setDone(false);
+        setError(err);
         console.log(err);
       }
     }
   };
+  console.log("done is " + done);
 
   return (
     <div className="register">
@@ -39,6 +48,16 @@ function Register() {
           </span>
         </div>
         <div className="registerRight">
+          {done && (
+            <span className="registerSuccess">
+              Registration Successful! Please login now
+            </span>
+          )}
+          {error && (
+            <span className="registerError">
+              Registration failed. Please retry with a valid email and password
+            </span>
+          )}
           <form className="registerBox" onSubmit={handleForm}>
             <input
               placeholder="Username"
@@ -73,7 +92,13 @@ function Register() {
             <button type="submit" className="registerButton">
               Sign Up!
             </button>
-            <button className="registerRegisterButton">Log in</button>
+            <button
+              type="button"
+              className="registerRegisterButton"
+              onClick={() => navigate("/login")}
+            >
+              Log in
+            </button>
           </form>
         </div>
       </div>

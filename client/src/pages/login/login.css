@@ -21,6 +21,14 @@
   justify-content: center;
 }
 
+.loginRight .loginError {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
 .loginWrapper .loginLeft .loginLogo {
   color: #1775ee;
   font-size: 50px;

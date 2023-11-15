@@ -66,7 +66,12 @@ router.get("/timeline/:userId", async (req, res) => {
     const friendPosts = await Promise.all(
       currentUser.following.map((id) => Post.find({ userId: id }))
     );
-    res.status(200).json(userPosts.concat(friendPosts[0]));
+    // To avoid sending null to the frontend we only concat when there is friendPosts
+    res
+      .status(200)
+      .json(
+        friendPosts.length > 0 ? userPosts.concat(friendPosts[0]) : userPosts
+      );
   } catch (err) {
     res.status(500).json(err);
   }
@@ -77,6 +82,7 @@ router.get("/profile/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
     const posts = await Post.find({ userId: user._id });
+    console.log("called " + posts.length);
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);

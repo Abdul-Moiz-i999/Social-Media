@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
     const userData = await user.save();
     res.status(200).json(userData);
   } catch (err) {
-    console.log(err);
+    res.status(500).json(err);
   }
   // const user = new User({
   //   username: "Ali",
@@ -28,16 +28,23 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  try {
+  //res.status(200).json("All Well");
+   try {
     const user = await User.findOne({ email: email });
     console.log("Inside login");
-    !user && res.status(404).json("User not found in the DBASE");
+	if (!user)
+		return res.status(404).json("User not found in the DBASE");
+		
 
     const pass = await bcrypt.compare(password, user.password);
+	//const pass ="yes"
+			console.log("Went Smooth");
     pass ? res.status(200).json(user) : res.status(404).json("Wrong password");
+    
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json("eror");
   }
+  
 });
 
 module.exports = router;

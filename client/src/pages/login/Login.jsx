@@ -2,15 +2,19 @@ import { useContext, useRef } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router";
 import "./login.css";
 
 function Login() {
   const email = useRef();
   const password = useRef();
-  const { isFetching, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch, error } = useContext(AuthContext);
 
-  const handleForm = (e) => {
+  const navigate = useNavigate();
+
+  const handleForm = async (e) => {
     e.preventDefault();
+    console.log("Inside handle form");
     loginCall(
       { email: email.current.value, password: password.current.value },
       dispatch
@@ -27,6 +31,9 @@ function Login() {
           </span>
         </div>
         <div className="loginRight">
+          {error && (
+            <span className="loginError">Invalid email or password!</span>
+          )}
           <form className="loginBox" onSubmit={handleForm}>
             <input
               ref={email}
@@ -51,12 +58,12 @@ function Login() {
               )}
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              {isFetching ? (
-                <CircularProgress color="inherit" size="28px" />
-              ) : (
-                "Create a New Account"
-              )}
+            <button
+              type="button"
+              className="loginRegisterButton"
+              onClick={() => navigate("/register")}
+            >
+              Create a New Account
             </button>
           </form>
         </div>

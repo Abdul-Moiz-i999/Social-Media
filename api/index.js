@@ -13,7 +13,7 @@ const postsRoute = require("./routes/posts");
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URL, () =>
+mongoose.connect(process.env.MONGO_URL + "/social", () =>
   console.log("successfully connected to DB")
 );
 
@@ -22,7 +22,11 @@ app.use(express.static("public"));
 
 // Middlewares
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(morgan("common"));
 
 const storage = multer.diskStorage({
