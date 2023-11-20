@@ -25,7 +25,7 @@ function Post({ post }) {
     };
 
     post && getData();
-  }, [post?.userId]);
+  }, [post]);
 
   const handleLike = async () => {
     try {
