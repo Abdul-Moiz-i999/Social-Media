@@ -8,8 +8,8 @@
 
 ![image](https://github.com/Abdul-Moiz-i999/Social-Media/assets/67798125/8de5904d-c73d-4096-b15d-92ddf914da5e)
 
-Welcome to this MERN (MongoDB, Express.js, React, Node.js) Stack project, a sophisticated social platform designed for user interaction. This platform enables users to register, log in, share posts, images, follow other users, and like posts.
-Currently, the follow functionality is not implemented on the front end side but you can use Postman to manually call those endpoints (explained at the end).
+Welcome to this MERN (MongoDB, Express.js, React, Node.js) Stack practice project, a social platform designed for user interaction. This platform enables users to register, log in, share posts, images, follow other users, and like posts.
+Currently, the follow functionality is not implemented on the front end side but you can use any api tester to manually call those endpoints (explained at the end).
 
 # Technology Stack
 
@@ -28,12 +28,12 @@ Currently, the follow functionality is not implemented on the front end side but
 
 + Utilizes bcrypt encryption for secure password storage.
 
-## Prerequisites:
+# Prerequisites:
 + NodeJS
 + MongoDB Installed Locally on the Machine OR you can provide your own MongoDB atlas link in the connection url in the index.js file in the node.
 + Mongosh or MongoDbCompass for locally running the database
 
-## Instructions To Setup
+# Instructions To Setup
 
 ## Frontend: ##
 
@@ -48,7 +48,7 @@ npm i
 npm start
 ```
 
-### Backend: ###
+## Backend: ##
 + Rename .env.example to .env
 + Run the database locally using mongosh or mongoDbCompass
 + If don't wanna run locally then register for MongoDB Atlas and provide it's connection URL in the index.js connection string.
